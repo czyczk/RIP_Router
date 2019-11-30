@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RIP_Router", "RIP_Router\RIP_Router.csproj", "{BB574465-E2CD-4788-B2E1-984FE03E351F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RIP_Router", "RIP_Router\RIP_Router.csproj", "{BB574465-E2CD-4788-B2E1-984FE03E351F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestUdpLibrary", "TestUdpLibrary\TestUdpLibrary.csproj", "{2F046AED-9CAC-4784-B580-69E5A13752F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{BB574465-E2CD-4788-B2E1-984FE03E351F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB574465-E2CD-4788-B2E1-984FE03E351F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB574465-E2CD-4788-B2E1-984FE03E351F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F046AED-9CAC-4784-B580-69E5A13752F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F046AED-9CAC-4784-B580-69E5A13752F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F046AED-9CAC-4784-B580-69E5A13752F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F046AED-9CAC-4784-B580-69E5A13752F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

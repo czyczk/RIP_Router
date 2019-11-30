@@ -6,7 +6,7 @@ namespace RIP_Router
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            new Startup().Start(args);
         }
     }
 }
