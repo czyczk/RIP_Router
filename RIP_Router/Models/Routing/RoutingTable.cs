@@ -108,5 +108,31 @@ namespace RIP_Router.Models.Routing
 
             return result;
         }
+
+        /// <summary>
+        /// Routing update entries are sent to other routers for updating their routing tables.
+        /// The entry containing itself should be excluded.
+        /// </summary>
+        /// <param name="ownerId">The router ID by which the routing table is owned</param>
+        /// <param name="targetRouterId">The router ID to which the update entries are sent</param>
+        /// <returns></returns>
+        public ReadOnlyCollection<RoutingUpdateEntry> GenerateRoutingUpdateEntriesWithPoisonReverse(uint ownerId, uint targetRouterId)
+        {
+            var list = new List<RoutingUpdateEntry>();
+            foreach (var routingEntry in _routingEntries.Values)
+            {
+                if (routingEntry.Target == ownerId)
+                    continue;
+                if (routingEntry.Target == targetRouterId ||
+                    routingEntry.NextHop != null && routingEntry.NextHop == targetRouterId)
+                    list.Add(new RoutingUpdateEntry { Target = routingEntry.Target, NumHops = uint.MaxValue });
+                else
+                    list.Add(new RoutingUpdateEntry { Target = routingEntry.Target, NumHops = routingEntry.NumHops });
+            }
+
+            var result = list.AsReadOnly();
+
+            return result;
+        }
     }
 }

@@ -171,6 +171,26 @@ namespace RIP_Router.Utils
             }
             else
                 throw new ArgumentException(messageInvalidExpirationTimerStr);
+
+            // Parse enable poison reverse
+            string enablePoisonReverseStr;
+            try
+            {
+                enablePoisonReverseStr = config["EnablePoisonReverse"].Value<string>();
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException("Invalid config file. EnablePoisonReverse not found or invalid.");
+            }
+            const string messageInvalidEnablePoisonReverseStr =
+                "Invalid value for enable poison reverse. It should be either `true` or `false`.";
+            isSuccess = bool.TryParse(enablePoisonReverseStr, out var enablePoisonReverse);
+            if (isSuccess)
+            {
+                options.EnablePoisonReverse = enablePoisonReverse;
+            }
+            else
+                throw new ArgumentException(messageInvalidEnablePoisonReverseStr);
         }
     }
 }

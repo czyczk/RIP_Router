@@ -230,7 +230,10 @@ namespace RIP_Router.Models.Routing
                     updateTimer.ElapsedMilliseconds / 1000 < Options.UpdateTimer) continue;
 
                 var writer = new NetDataWriter();
-                writer.Put(JsonConvert.SerializeObject(GenerateRoutingUpdateEntries()));
+                var updatingEntries = Options.EnablePoisonReverse
+                    ? GenerateRoutingUpdateEntriesWithPoisonReverse(routerId)
+                    : GenerateRoutingUpdateEntries();
+                writer.Put(JsonConvert.SerializeObject(updatingEntries));
                 _connectedRouters[routerPort]
                     .Send(writer, DeliveryMethod.Unreliable);
 
@@ -286,6 +289,7 @@ namespace RIP_Router.Models.Routing
                             _updateLockTimer.Stop();
                             _updateLockTimer.Reset();
                         }
+                        Thread.Sleep(15);
                     }
                 });
 
@@ -379,6 +383,11 @@ namespace RIP_Router.Models.Routing
         private ReadOnlyCollection<RoutingUpdateEntry> GenerateRoutingUpdateEntries()
         {
             return _routingTable.GenerateRoutingUpdateEntries(Options.RouterId);
+        }
+
+        private ReadOnlyCollection<RoutingUpdateEntry> GenerateRoutingUpdateEntriesWithPoisonReverse(uint targetRouterId)
+        {
+            return _routingTable.GenerateRoutingUpdateEntriesWithPoisonReverse(Options.RouterId, targetRouterId);
         }
 
         /// <summary>

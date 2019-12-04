@@ -35,5 +35,10 @@ namespace RIP_Router.Models.Options
         /// The interval after which the routing entry is considered unreachable if no updates are received from it.
         /// </summary>
         public uint ExpirationTimer { get; set; }
+
+        /// <summary>
+        /// Enable poison reverse or not.
+        /// </summary>
+        public bool EnablePoisonReverse { get; set; }
     }
 }
